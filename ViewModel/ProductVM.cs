@@ -37,6 +37,7 @@ namespace WpfApp2.ViewModel
         //}
         public ProductVM()
         {
+            Init();
             _pageModel = new PageModel();
             ProductAvailability = "Out of Stock";
         }
