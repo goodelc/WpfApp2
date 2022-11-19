@@ -14,7 +14,7 @@ namespace WpfApp2.ViewModel
 {
     class ProductVM : Utilities.ViewModelBase
     {
-        const string Path = "D:\\111.txt";
+        const string Path = "C:\\Users\\chen\\Documents\\test.txt";
         //private readonly PageModel _pageModel;
 
         public string _productAvailability;
