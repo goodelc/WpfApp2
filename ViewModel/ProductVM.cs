@@ -8,48 +8,51 @@ using System.Windows;
 using System.Windows.Input;
 using WpfApp2.Model;
 using System.IO;
+using System.Data.Common;
 
 namespace WpfApp2.ViewModel
 {
     class ProductVM : Utilities.ViewModelBase
     {
-        const string Path = "C:\\Windows\\System32\\drivers\\etc\\hosts";
-        private readonly PageModel _pageModel;
+        const string Path = "D:\\111.txt";
+        //private readonly PageModel _pageModel;
+
+        public string _productAvailability;
         public string ProductAvailability
         {
-            get { return _pageModel.ProductStatus; }
-            set { _pageModel.ProductStatus = value; OnPropertyChanged(); }
+            get=> _productAvailability; 
+            set
+            {
+                _productAvailability = value;
+                OnPropertyChanged("ProductAvailability");
+            }
         }
 
-        //public ICommand SaveHosts()
-        //{
-        //    return new ICommand();
-        //}
 
         public string Init()
         {
             return File.ReadAllText(Path);
         }
-        public ICommand AddProductCommand { get; set; }
-        //public ICommand AddProductCommand()
-        //{
-        //    return null;
-        //}
+        private readonly DelegateCommand _changeCommand;
+        public ICommand ChangeCommand => _changeCommand;
+
+
         public ProductVM()
         {
-            Init();
-            _pageModel = new PageModel();
-            ProductAvailability = "Out of Stock";
+            _changeCommand = new DelegateCommand(DoSomething, CanDoSomething);
         }
 
-
-        public void loadButton_Click(object sender, RoutedEventArgs e)
+        private bool CanDoSomething(object arg)
         {
-
-            var str = File.ReadAllText(Path);
-            textBox.Text = str;
-            wordCount.Content = "word : " + str.Count().ToString();
+            return true;
         }
+
+        private void DoSomething(object obj)
+        {
+            ProductAvailability = Init();
+            _changeCommand.InvokeCanExecuteChanged();
+        }
+
 
         //private void saveButton_Click(object sender, RoutedEventArgs e)
         //{
@@ -63,5 +66,25 @@ namespace WpfApp2.ViewModel
         //    wordCount.Content = "word : " + contents.Count().ToString();
         //    MessageBox.Show("Save Success");
         //}
+    }
+
+    public class DelegateCommand : ICommand
+    {
+        private readonly Action<object> _executeAction;
+        private readonly Func<object, bool> _canExecuteAction;
+
+        public DelegateCommand(Action<object> executeAction, Func<object, bool> canExecuteAction)
+        {
+            _executeAction = executeAction;
+            _canExecuteAction = canExecuteAction;
+        }
+
+        public void Execute(object parameter) => _executeAction(parameter);
+
+        public bool CanExecute(object parameter) => _canExecuteAction?.Invoke(parameter) ?? true;
+
+        public event EventHandler CanExecuteChanged;
+
+        public void InvokeCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
 }
