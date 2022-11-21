@@ -1,4 +1,5 @@
 ﻿using MaterialDesignThemes.Wpf;
+using Panuon.WPF.UI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,14 +15,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WpfApp2.ViewModel;
 
 namespace WpfApp2
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : WindowX
     {
         public MainWindow()
         {

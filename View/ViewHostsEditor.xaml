@@ -1,0 +1,56 @@
+﻿<UserControl
+    x:Class="WpfApp2.View.ViewHostsEditor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WpfApp2.View"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewMode1="clr-namespace:WpfApp2.ViewModel"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <viewMode1:ViewHosteditor />
+    </UserControl.DataContext>
+
+    <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <Label Content="当前host文件路径:" />
+            <Label Content="{Binding Path=HostFilePath}" />
+        </StackPanel>
+        <materialDesign:Card Margin="5">
+            <TextBox
+                MinHeight="500"
+                MaxHeight="500"
+                HorizontalAlignment="Left"
+                AcceptsReturn="True"
+                HorizontalScrollBarVisibility="Auto"
+                Text="{Binding Path=HostContents}"
+                TextWrapping="NoWrap"
+                VerticalScrollBarVisibility="Auto" Cursor="Arrow" />
+        </materialDesign:Card>
+
+        <StackPanel
+            Margin="2"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
+            <Button
+                Width="100"
+                Margin="0,0,10,0"
+                Command="{Binding LoadHostFileCommand}"
+                Content="读取"
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                ToolTip="MaterialDesignFlatDarkButton" />
+            <Button
+                Width="100"
+                Command="{Binding SaveHostFileCommand}"
+                Content="保存"
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                Style="{StaticResource MaterialDesignFlatSecondaryDarkBgButton}"
+                ToolTip="MaterialDesignFlatSecondaryDarkBgButton" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>
