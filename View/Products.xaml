@@ -29,9 +29,9 @@
                    VerticalAlignment="Center"
                    FontFamily="/Fonts/#Rubik Medium"
                    Margin="261,300,0,0" />-->
-        <Button x:Name="loadButton" Content="Load" HorizontalAlignment="Left" Margin="101,168,0,0" VerticalAlignment="Top" Command="{Binding ChangeCommand }"/>
-        <!--<Button x:Name="loadButton" Content="Save" HorizontalAlignment="Left" Margin="101,233,0,0" VerticalAlignment="Top" Command="{Binding loadButton_Click,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />-->
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Width="490" Height="228" Margin="223,116,0,0" AcceptsReturn ="true" Text="{Binding ProductAvailability}"/>
+        <Button x:Name="loadButton" Content="Load" HorizontalAlignment="Left" Margin="101,168,0,0" VerticalAlignment="Top" Command="{Binding ChangeCommand}"/>
+        <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="101,233,0,0" VerticalAlignment="Top" Command="{Binding SaveCommand}" />
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Width="490" Height="228" Margin="223,116,0,0" AcceptsReturn ="true" Text="{Binding ProductAvailability,Mode=TwoWay}"/>
         <Label x:Name="wordCount" Content="Word:" HorizontalAlignment="Left" Margin="673,362,0,0" VerticalAlignment="Top"/>
 
     </Grid>

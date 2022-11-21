@@ -20,7 +20,7 @@ namespace WpfApp2.ViewModel
         public string _productAvailability;
         public string ProductAvailability
         {
-            get=> _productAvailability; 
+            get => _productAvailability;
             set
             {
                 _productAvailability = value;
@@ -35,7 +35,17 @@ namespace WpfApp2.ViewModel
         }
         private readonly DelegateCommand _changeCommand;
         public ICommand ChangeCommand => _changeCommand;
+        public ICommand _SaveCommand;
+        public ICommand SaveCommand
+        {
+            get => _SaveCommand;
+            set { _SaveCommand = value; OnPropertyChanged("ProductAvailability"); }
+        }
 
+        public ICommand save()
+        {
+            return new DelegateCommand(SaveSomething, CanDoSomething);
+        }
 
         public ProductVM()
         {
@@ -52,7 +62,11 @@ namespace WpfApp2.ViewModel
             ProductAvailability = Init();
             _changeCommand.InvokeCanExecuteChanged();
         }
-
+        private void SaveSomething(object obj)
+        {
+            ProductAvailability = Init();
+            _changeCommand.InvokeCanExecuteChanged();
+        }
 
         //private void saveButton_Click(object sender, RoutedEventArgs e)
         //{
