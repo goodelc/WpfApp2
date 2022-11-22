@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace WpfApp2.View
 {
     /// <summary>
-    /// ViewHostsEditor.xaml 的交互逻辑
+    /// ViewAbout.xaml 的交互逻辑
     /// </summary>
-    public partial class ViewHostsEditor : UserControl
+    public partial class ViewAbout : UserControl
     {
-        public ViewHostsEditor()
+        public ViewAbout()
         {
             InitializeComponent();
         }
-
     }
 }

@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="WpfApp2.View.ViewAbout"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp2.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Vertical">
+            <TextBlock
+                FontSize="20"
+                FontWeight="Bold"
+                Text="免责及商用说明" />
+            <TextBlock Text="1.本程序所有的仅作为技术交流；" />
+            <TextBlock Text="2.本程序所有代码开源,请不要做任何非法操作；" />
+            <TextBlock Text="3.使用本程序及自行编译本程序(包括二次开发)所带来的一切非法后果与本人(原创开发者:V刀刃)无关；" />
+            <TextBlock Text="4.可商用，无需付费，也无需在程序中做任何声明；" />
+        </StackPanel>
+
+        <Label />
+        <Label />
+        <Label />
+
+
+        <StackPanel Orientation="Vertical">
+            <TextBlock
+                FontSize="20"
+                FontWeight="Bold"
+                Text="采用开源库及相关技术" />
+            <TextBlock Text="所有开源库排名不分先后" />
+            <TextBlock Text="0.WPF-&gt;微软官方提供的一套Windows程序开发ui库" />
+            <TextBlock Text="1.Panuon.WPF.UI-&gt;窗口框架样式更改" />
+            <TextBlock Text="2.MaterialDesignThemes-&gt;窗口及页面的元素，Card\TextBox\Button等等" />
+            <TextBlock Text="3.CommunityToolkit.Mvvm-&gt;微软官方开源的MVVM框架" />
+        </StackPanel>
+
+        <Label />
+        <Label />
+        <Label />
+        <Label />
+
+        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+            <TextBlock Text="开发作者:V刀刃" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

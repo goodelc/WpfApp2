@@ -5,14 +5,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:myView="clr-namespace:WpfApp2.View"
+        xmlns:viewMode1="clr-namespace:WpfApp2.ViewModel"
         xmlns:pu="clr-namespace:Panuon.WPF.UI;assembly=Panuon.WPF.UI"
-        mc:Ignorable="d"
         Title="工具箱"
         Height="768"
         Width="1366"
         pu:WindowXCaption.Buttons="MinimizeClose"
+        mc:Ignorable="d"
         pu:WindowXCaption.Height="40">
+    <Window.DataContext>
+        <viewMode1:ViewHosteditor />
+    </Window.DataContext>
     <TabControl
         materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
         SnapsToDevicePixels="True"
@@ -33,13 +38,12 @@
                 <TextBlock
                     Margin="0,0,0,0"
                     Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                    Text="首页">
-                    <TextBlock>
+                    Text="首页"/>
+                <TextBlock>
                         <Run Text=""/> 
                         <LineBreak/>
-                    </TextBlock>
-                    <myView:ViewIndex/>
                 </TextBlock>
+                <myView:ViewIndex/>
             </StackPanel>
         </TabItem>
         <TabItem>
@@ -61,11 +65,103 @@
                 <TextBlock>
                     <Run Text="编辑本系统的host文件"/>
                     <LineBreak/>
-                    <myView:ViewHostsEditor/>
                 </TextBlock>
+                <myView:ViewHostsEditor/>
+            </StackPanel>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Width="auto" Height="auto">
+                    <materialDesign:PackIcon
+                        Width="24"
+                        Height="24"
+                        HorizontalAlignment="Center"
+                        Kind="ClockOutline" />
+                    <TextBlock HorizontalAlignment="Center" Text="Github" />
+                </StackPanel>
+            </TabItem.Header>
+            <StackPanel Margin="16">
+                <TextBlock
+                    Margin="0,0,0,0"
+                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                    Text="Github加速" />
+                <TextBlock>
+                    <Run Text="加速节点搜集于网络，可以自行添加" />
+                    <LineBreak />
+                </TextBlock>
+                <myView:ViewGithub />
+            </StackPanel>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Width="auto" Height="auto">
+                    <materialDesign:PackIcon
+                        Width="24"
+                        Height="24"
+                        HorizontalAlignment="Center"
+                        Kind="Images" />
+                    <TextBlock HorizontalAlignment="Center" Text="谷歌" />
+                </StackPanel>
+            </TabItem.Header>
+            <StackPanel Margin="16">
+                <TextBlock
+                    Margin="0,0,0,0"
+                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                    Text="Google加速" />
+                <TextBlock>
+                    <Run Text="加速节点搜集于网络，可以自行添加，也可以是镜像节点" />
+                    <LineBreak />
+                </TextBlock>
+                <myView:ViewGoogle />
+            </StackPanel>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Width="auto" Height="auto">
+                    <materialDesign:PackIcon
+                        Width="24"
+                        Height="24"
+                        HorizontalAlignment="Center"
+                        Kind="MusicBoxMultiple" />
+                    <TextBlock HorizontalAlignment="Center" Text="微软" />
+                </StackPanel>
+            </TabItem.Header>
+            <StackPanel Margin="16">
+                <TextBlock
+                    Margin="0,0,0,0"
+                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                    Text="微软加速" />
+                <TextBlock>
+                    <Run Text="加速节点搜集于网络，可以自行添加，常用于微软账户登录问题" />
+                    <LineBreak />
+                </TextBlock>
+                <myView:ViewMicrosoft/>
             </StackPanel>
         </TabItem>
 
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Width="auto" Height="auto">
+                    <materialDesign:PackIcon
+                        Width="24"
+                        Height="24"
+                        HorizontalAlignment="Center"
+                        Kind="MusicBoxMultiple" />
+                    <TextBlock HorizontalAlignment="Center" Text="关于" />
+                </StackPanel>
+            </TabItem.Header>
+            <StackPanel Margin="16">
+                <TextBlock
+                    Margin="0,0,0,0"
+                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                    Text="关于" />
+                <TextBlock>
+                    <Run Text="" />
+                    <LineBreak />
+                </TextBlock>
+                <myView:ViewAbout/>
+            </StackPanel>
+        </TabItem>
 
 
     </TabControl>

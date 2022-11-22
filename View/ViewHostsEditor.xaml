@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:WpfApp2.View"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewMode1="clr-namespace:WpfApp2.ViewModel"
@@ -14,28 +15,116 @@
     <UserControl.DataContext>
         <viewMode1:ViewHosteditor />
     </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <!--定义行集合 2行-->
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <!--定义列集合 2列-->
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TabControl  materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
+        SnapsToDevicePixels="True" Name="HostMenuTab"
+        Style="{StaticResource MaterialDesignNavigationRailTabControl}"
+        TabStripPlacement="Bottom" Grid.Column="0" Grid.Row="0">
+            <TabItem >
+                <TabItem.Header>
+                    <StackPanel>
+                        <materialDesign:PackIcon
+                        Width="24"
+                        Height="24"
+                        HorizontalAlignment="Center"
+                        Kind="Folder" />
+                        <TextBlock HorizontalAlignment="Center" Text="Dev" />
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="当前host文件路径:" />
+                        <Label Content="{Binding Path=HostFilePath}" />
+                    </StackPanel>
+                    <materialDesign:Card Margin="5">
+                        <TextBox
+                         MinHeight="400"
+                         MaxHeight="400"
+                         AcceptsReturn="True"
+                         HorizontalScrollBarVisibility="Auto"
+                         Text="{Binding Path=HostContents}"
+                         TextWrapping="NoWrap"
+                         VerticalScrollBarVisibility="Auto" Cursor="Arrow"/>
+                    </materialDesign:Card>
+                </StackPanel>
+            </TabItem>
+            <!--<TabItem>
+                <TabItem.Header>
+                    <StackPanel>
+                        <materialDesign:PackIcon
+                        Width="24"
+                        Height="24"
+                        HorizontalAlignment="Center"
+                        Kind="Folder" />
+                        <TextBlock HorizontalAlignment="Center" Text="Online" />
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="当前host文件路径:" />
+                        <Label Content="{Binding Path=HostFilePath}" />
+                    </StackPanel>
+                    <materialDesign:Card Margin="5">
+                        <TextBox
+                         MinHeight="400"
+                         MaxHeight="400"
+                         AcceptsReturn="True"
+                         HorizontalScrollBarVisibility="Auto"
+                         
+                         TextWrapping="NoWrap"
+                         VerticalScrollBarVisibility="Auto" Cursor="Arrow"/>
+                    </materialDesign:Card>
+                </StackPanel>
+            </TabItem>-->
+            <TabItem>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="load">
+                        <i:InvokeCommandAction Command="{Binding AddHostFileCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <TabItem.Header>
+                    <StackPanel>
+                        <materialDesign:PackIcon
+                        Width="24"
+                        Height="24"
+                        HorizontalAlignment="Center"
+                        Kind="Add" />
+                        <TextBlock HorizontalAlignment="Center" Text="Add" />
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="当前host文件路径:" />
+                        <Label Content="{Binding Path=HostFilePath}" />
+                    </StackPanel>
+                    <materialDesign:Card Margin="5">
+                        <TextBox
+                         MinHeight="400"
+                         MaxHeight="400"
+                         AcceptsReturn="True"
+                         HorizontalScrollBarVisibility="Auto"
+                         Text="{Binding AddHostContents}"
+                         TextWrapping="NoWrap"
+                         VerticalScrollBarVisibility="Auto" Cursor="Arrow"/>
+                    </materialDesign:Card>
+                </StackPanel>
+            </TabItem>
 
-    <StackPanel VerticalAlignment="Center" Orientation="Vertical">
-        <StackPanel Orientation="Horizontal">
-            <Label Content="当前host文件路径:" />
-            <Label Content="{Binding Path=HostFilePath}" />
-        </StackPanel>
-        <materialDesign:Card Margin="5">
-            <TextBox
-                MinHeight="500"
-                MaxHeight="500"
-                HorizontalAlignment="Left"
-                AcceptsReturn="True"
-                HorizontalScrollBarVisibility="Auto"
-                Text="{Binding Path=HostContents}"
-                TextWrapping="NoWrap"
-                VerticalScrollBarVisibility="Auto" Cursor="Arrow" />
-        </materialDesign:Card>
+        </TabControl>
 
         <StackPanel
             Margin="2"
             HorizontalAlignment="Center"
-            Orientation="Horizontal">
+            Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
             <Button
                 Width="100"
                 Margin="0,0,10,0"
@@ -46,11 +135,13 @@
                 ToolTip="MaterialDesignFlatDarkButton" />
             <Button
                 Width="100"
+                Name="saveButton"
                 Command="{Binding SaveHostFileCommand}"
                 Content="保存"
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignFlatSecondaryDarkBgButton}"
                 ToolTip="MaterialDesignFlatSecondaryDarkBgButton" />
         </StackPanel>
-    </StackPanel>
+
+    </Grid>
 </UserControl>
