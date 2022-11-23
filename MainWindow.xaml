@@ -47,6 +47,11 @@
             </StackPanel>
         </TabItem>
         <TabItem>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="load">
+                    <i:InvokeCommandAction Command="{Binding LoadHostFileCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <TabItem.Header>
                 <StackPanel Width="auto" Height="auto">
                     <materialDesign:PackIcon
